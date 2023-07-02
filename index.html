@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&family=Montserrat+Alternates:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="header-nav container">
+        <a class="header-logo" href="#">TODO</a>
+        <form class="form-header">
+          <select class="form-select">
+            <option class="form-option" value="default">Theme default</option>
+            <option class="form-option" value="light">Theme light</option>
+            <option class="form-option" value="dark">Theme dark</option>
+          </select>
+        </form>
+      </nav>
+    </header>
+    <section class="container">
+      <h1 class="title">Todo list</h1>
+      <div class="container-form">
+        <form class="form" name="addTask">
+            <label class="wrap-input"
+            >
+            <span class="form-label">Title</span>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="form-control"
+              placeholder="Add title"
+          /></label>
+            <label class="wrap-input"
+            >
+            <span class="form-label">Text</span>
+            <input
+              type="text"
+              name="body"
+              id="body"
+              placeholder="Add discription"
+              class="form-control"
+          /></label>
+   
+          
+          <button  class="form-btn btn-default" type="submit">Add task</button>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <div class="container-list">
+        <ul class="list-group"></ul>
+      </div>
+    </section>
+
+    <script src="/js/todo.js"></script>
+  </body>
+</html>
