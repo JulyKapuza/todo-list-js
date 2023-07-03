@@ -24,9 +24,65 @@ let tasks = [
     completed: false,
   },
 ];
+
+const themes = {
+  default: {
+    "--base-text-color": "#020124",
+    "--header-bg": "#052659",
+    "--title-color": "#052659",
+    "--delete-btn": "#5483b3",
+    "--done-btn": "#7DA0CA",
+    "--disabled-btn": "#afacac",
+    "--text-done": "#4771af",
+    "--bg-color-btn": "#307cbe",
+    "--white": "#f0f8ff",
+    '--header-logo': "#c1e8ff",
+    "--bg": "#f0f8ff",
+    "--light": "#c1e8ff",
+ 
+
+  },
+  light: {
+    "--base-text-color": "#191D23",
+    "--header-bg": "#57707A",
+    "--title-color": "#57707A",
+    "--delete-btn": "#C5BAC4",
+    "--done-btn": "#7B919C",
+    "--disabled-btn": "#989DAA",
+    "--text-done": "#191D23",
+    "--bg-color-btn": "#7B919C",
+    "--white": "#DEDCDC",
+    '--header-logo': "#C5BAC4",
+    "--bg": "#DEDCDC",
+    "--light": "#FFFFFF",
+
+  },
+  dark: {
+    "--base-text-color": "#0f969c",
+    "--header-bg": "rgba(255, 255, 255, 0.2)",
+    "--title-color": "#0f969c",
+    "--delete-btn": "#913946",
+    "--done-btn": "#0c7075",
+    "--disabled-btn": "#afacac",
+    "--text-done": "#6da5c0",
+    "--bg-color-btn": "#0f969c",
+    "--white": "#f0f8ff",
+    '--header-logo': "#0f969c",
+    "--bg": "#05161a",
+    "--light": "#072e33",
+    '--placeholder': '#afacac',
+    '--hover': 'rgba(255, 255, 255, 0.3)'
+   
+  },
+};
+
+
 // let tasks=[]
 const list = document.querySelector(".list-group");
 const form = document.querySelector(".form");
+const select = document.getElementById("themeSelect");
+let lastSelectedTheme = localStorage.getItem('app_theme') || "default";
+
 
 (function (arrOfTasks) {
   renderMarkup(arrOfTasks);
@@ -94,14 +150,32 @@ function onCheck(e) {
   if (e.target.dataset.action === "done") {
     const parent = e.target.closest("[data-task-id]");
     const id = parent.dataset.taskId;
-    console.log( parent)
-    parent.classList.add('green')
+    console.log(parent);
+    parent.classList.add("green");
     // e.target.disabled = true;
-    e.target.classList.add('disabled')
+    e.target.classList.add("disabled");
 
     const task = tasks.find((task) => task.id === parseInt(id));
     if (task) {
       task.completed = true;
     }
   }
+}
+setTheme(lastSelectedTheme)
+//зміна теми
+select.addEventListener('change',onThemeSelect )
+
+function onThemeSelect(e){
+const selectedTheme = select.value
+setTheme(selectedTheme)
+lastSelectedTheme = selectedTheme
+localStorage.setItem('app_theme', selectedTheme)
+}
+
+function setTheme(name){
+  const selectedThemeObj = themes[name]
+  Object.entries(selectedThemeObj).forEach(([key, value])=>{
+    document.documentElement.style.setProperty(key, value)
+  })
+
 }
